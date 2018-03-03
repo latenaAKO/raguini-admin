@@ -65,6 +65,8 @@
         </main>
     </div>
 
+    @stack('scripts')
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

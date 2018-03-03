@@ -1,9 +1,9 @@
 <?php
 
-namespace Admin\Models\Post;
+namespace Admin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model {
-    protected $fillable = [ 'title', 'slug', 'excerpt', 'body' ];
+    protected $fillable = [ 'author_id', 'title', 'slug', 'excerpt', 'body' ];
 }

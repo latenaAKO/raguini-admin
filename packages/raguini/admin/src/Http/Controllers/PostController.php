@@ -5,10 +5,15 @@ namespace Admin\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Admin\Models\Post;
-
+use Illuminate\Support\Facades\Auth;
 class PostController extends Controller {
     public function index() {
-        return view('admin::posts_index');
+        $posts = Post::paginate(15);
+
+        $data = [
+            'posts' => $posts
+        ];
+        return view('admin::posts_index', $data);
     }
 
     public function create() {
@@ -22,9 +27,17 @@ class PostController extends Controller {
             'slug'  => 'max:191|regex:/^([a-zA-Z\d]+-)*([a-zA-Z\d]+)/|unique:posts,slug'
         ]);
 
-        $post = Post::create($request->all());
+        $data = $request->all();
+        $data['author_id'] = Auth::user()->id;
+
+        $post = Post::create($data);
         
-        dd($post);
+        if($post) {
+            return redirect()->back()->with('message_success', 'Saved Successfully');
+        }
+        else {
+            return redirect()->back()->with('message_error', 'Something went wrong');
+        }
     }
 
     public function edit($id) {

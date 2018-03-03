@@ -7,7 +7,7 @@
         <h1>Create Post</h1>
 
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
 
@@ -25,7 +25,7 @@
                             </div>
                             <div class="form-group">
                                 <small>Body</small>
-                                {{ Form::textarea('body', null, [ 'class' => 'form-control', 'rows' => 4]) }}
+                                {{ Form::textarea('body', null, [ 'class' => 'form-control', 'id' => 'post-body', 'rows' => 4]) }}
                             </div>
 
                             {{ Form::submit('save', ['class' => 'btn btn-primary']) }}
@@ -37,3 +37,8 @@
     </div>
 
 @endsection
+
+@push('scripts')
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'#post-body' });</script>
+@endpush
