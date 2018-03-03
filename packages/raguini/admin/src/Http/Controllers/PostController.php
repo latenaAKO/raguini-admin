@@ -40,9 +40,19 @@ class PostController extends Controller {
         }
     }
 
-    public function edit($id) {
+    public function show($slug) {
+        $post = Post::findBySlugOrFail($slug);
         $data = [
+            'post' => $post
+        ];
+        return view('admin::post_show', $data);
+    }
 
+    public function edit($id) {
+        $post = Post::findOrFail($id);
+
+        $data = [
+            'post' => $post
         ];
         return view('admin::post_edit', $data);
     }

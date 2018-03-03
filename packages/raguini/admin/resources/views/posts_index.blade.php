@@ -16,6 +16,7 @@
                                 <th>Category</th>
                                 <th>Date Created</th>
                                 <th>Date Published</th>
+                                <th></th>
                             </thead>
                             <tbody>
                                 @foreach($posts as $post)
@@ -25,6 +26,7 @@
                                         <td>{{ $post->author_id }}</td>
                                         <td>{{ $post->created_at }}</td>
                                         <td>{{ $post->created_at }}</td>
+                                        <td><a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-primary btn-sm">Edit</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
